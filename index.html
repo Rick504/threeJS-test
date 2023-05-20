@@ -17,7 +17,6 @@
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-    <script>console.clear();</script>
     <script src="https://unpkg.com/three@0.87.1/build/three.js"></script>
     <script src="https://unpkg.com/three@0.87.1/examples/js/controls/OrbitControls.js"></script>
     <script src="https://unpkg.com/three@0.87.1/examples/js/loaders/GLTFLoader.js"></script>
@@ -30,6 +29,7 @@
         var raycaster = new THREE.Raycaster()
         var offset = new THREE.Vector3()
         var isDragging = false
+        const buildings = []
 
         // Cria a cena
         const scene = new THREE.Scene()
@@ -48,52 +48,60 @@
 
         // ------------ Adicionando IMagem --------------------/
 
-        // Cria um objeto de geometria para o plano
-        const planeGeometrys = new THREE.PlaneGeometry(6, 8)
+        function createImage () {
+            // Cria um objeto de geometria para o plano
+            const planeGeometrys = new THREE.PlaneGeometry(6, 8)
 
-        // Cria um material com textura para o plano
-        const textureLoaders = new THREE.TextureLoader()
-        const texture = textureLoaders.load('./img/torre.png')
-        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true })
+            // Cria um material com textura para o plano
+            const textureLoaders = new THREE.TextureLoader()
+            const texture = textureLoaders.load('./img/torre.png')
+            const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true })
 
-        // Cria o objeto de malha para o plano
-        const planeMesh = new THREE.Mesh(planeGeometrys, material)
+            // Cria o objeto de malha para o plano
+            const planeMesh = new THREE.Mesh(planeGeometrys, material)
 
-        // Define a posição e rotação do plano
-        planeMesh.position.set(9.5, 5, 10)
-        planeMesh.rotation.x = -Math.PI / 50 // Rotaciona o plano para ficar na horizontal
-        planeMesh.rotation.y = 2199.9
-        // Adiciona o plano à cena
-        scene.add(planeMesh)
+            // Define a posição e rotação do plano
+            planeMesh.position.set(9.5, 5, 10)
+            planeMesh.rotation.x = -Math.PI / 50 // Rotaciona o plano para ficar na horizontal
+            planeMesh.rotation.y = 2199.9
+            // Adiciona o plano à cena
+            scene.add(planeMesh)
+        }
+        // createImage()
+
 
         // ------------------------ Criando Textura Predios -------------/
-        // Cria o objeto de geometria para o prédio
-        const buildingGeometry = new THREE.BoxGeometry(2, 2, 2)
 
-        // Cria o material com textura para o prédio
-        const textureLoader = new THREE.TextureLoader()
-        const buildingTexture = textureLoader.load('./img/teste.gif')
-        const buildingMaterial = new THREE.MeshPhongMaterial({ map: buildingTexture })
+        function createBuildings () {
+            // Cria o objeto de geometria para o prédio
+            const buildingGeometry = new THREE.BoxGeometry(1.5, 3, 1.5)
 
-        // Cria o array de prédios
-        const buildings = []
+            // Cria o material com textura para o prédio
+            const textureLoader = new THREE.TextureLoader()
+            const buildingTexture = textureLoader.load('./img/teste.gif')
+            const buildingMaterial = new THREE.MeshPhongMaterial({ map: buildingTexture })
 
-        // Cria o objeto de malha para o prédio
-        const building = new THREE.Mesh(buildingGeometry, buildingMaterial)
+            // Sem textura, com cor simples
+            // const buildingMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide })
 
-        // ------------------------ Cria um Prédio ----------------------//
-        // Define a posição do prédio
-        building.position.x = 4
-        building.position.z = 3.6
+            // Cria o objeto de malha para o prédio
+            const building = new THREE.Mesh(buildingGeometry, buildingMaterial)
 
-        // Define a altura do prédio
-        building.scale.y = 2
+            // ------------------------ Cria um Prédio ----------------------//
+            // Define a posição do prédio
+            building.position.x = 6.6 // aumente 1.5
+            building.position.z = 3.6 // aumente 1.5
 
-        // Adiciona o prédio ao array de prédios
-        buildings.push(building)
+            // Define a altura do prédio
+            building.scale.y = 0.1
 
-        // Adiciona o prédio à cena
-        scene.add(building)
+            // Adiciona o prédio ao array de prédios
+            buildings.push(building)
+
+            // Adiciona o prédio à cena
+            scene.add(building)
+        }
+        createBuildings()
 
         //  ------------------- Função para lidar com o clique na cena
         function onDocumentClick (event) {
@@ -141,35 +149,41 @@
 
         // ----------------------- Cria Matriz chão ----------------//
 
-        // Cria a geometria do plano
-        const planeGeometry = new THREE.PlaneGeometry(20, 25)
+        function createMatriz () {
+            // Cria a geometria do plano
+            const planeGeometry = new THREE.PlaneGeometry(25, 25)
 
-        // Cria a textura do chão com imagem de grama
-        const groundTexture = new THREE.TextureLoader().load('./img/grama.png')
-        groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping
-        groundTexture.repeat.set(10, 10)
+            // Cria a textura do chão com imagem de grama
+            const groundTexture = new THREE.TextureLoader().load('./img/grama.png')
+            groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping
+            // Quantas imagens são carregadas
+            groundTexture.repeat.set(15, 15)
 
 
-        // Cria o material do chão
-        const groundMaterial = new THREE.MeshBasicMaterial({ map: groundTexture })
-        // Cria o objeto de malha para o chão
-        const ground = new THREE.Mesh(planeGeometry, groundMaterial)
-        // Rotaciona o chão para ficar paralelo ao eixo x
-        ground.rotation.x = -Math.PI / 2
+            // Cria o material do chão
+            const groundMaterial = new THREE.MeshBasicMaterial({ map: groundTexture })
+            // Cria o objeto de malha para o chão
+            const ground = new THREE.Mesh(planeGeometry, groundMaterial)
+            // Rotaciona o chão para ficar paralelo ao eixo x
+            ground.rotation.x = -Math.PI / 2
 
-        // Posiciona o chão abaixo dos prédios
-        ground.position.y = -3
-        // Adiciona o chão à cena
-        scene.add(ground)
+            // Posiciona o chão abaixo dos prédios
+            ground.position.y = -3
+            // Adiciona o chão à cena
+            scene.add(ground)
 
-        // Cria a luz ambiente
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-        scene.add(ambientLight)
+            // Cria a luz ambiente
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+            scene.add(ambientLight)
 
-        // Cria a luz direcional
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
-        directionalLight.position.set(0, 1, 0)
-        scene.add(directionalLight)
+            // Cria a luz direcional
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
+            directionalLight.position.set(0, 1, 0)
+            scene.add(directionalLight)
+
+        }
+
+        createMatriz()
 
         // Anima a cena
         function animate () {
@@ -183,8 +197,6 @@
             renderer.render(scene, camera)
         }
         animate()
-
-
 
     </script>
 </body>
