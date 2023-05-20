@@ -34,40 +34,95 @@
         // Cria a cena
         const scene = new THREE.Scene()
 
+        let zoomCam = 10
+
         // Cria a câmera
-        const camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 0.1, 1000)
+        const camera = new THREE.PerspectiveCamera(zoomCam, window.innerWidth / window.innerHeight, 0.1, 1000)
 
         // camera.position.set(ver de lado, altura, distancia de frente)
-        camera.position.set(40, 30, 40)
-        camera.lookAt(5, 0, 6)
+        camera.position.set(40, 40, 40)
+
+        let downCam = 0
+        let rigthCam = 6
+        let leftCam = 5
+        camera.lookAt(leftCam, downCam, rigthCam)
 
         // Cria o renderizador
         const renderer = new THREE.WebGLRenderer()
         renderer.setSize(window.innerWidth, window.innerHeight)
         document.body.appendChild(renderer.domElement)
 
+        // Função para ajustar o zoom da câmera com base na rolagem do mouse
+        function ajustarZoomComScroll (event) {
+            // Verifica a direção da rolagem do mouse
+            const delta = Math.sign(event.deltaY) // -1 para rolagem para cima, 1 para rolagem para baixo
+
+            // Ajusta o fator de zoom conforme necessário
+            const zoomFactor = 0.5
+
+            // Atualiza o valor do zoom da câmera
+            zoomCam -= delta * zoomFactor
+
+            // Limita o zoom dentro do intervalo desejado
+            zoomCam = Math.max(0.5, zoomCam) // Zoom mínimo
+            zoomCam = Math.min(1.5, zoomCam) // Zoom máximo
+
+            // Atualiza a câmera
+            camera.zoom = zoomCam
+            camera.updateProjectionMatrix()
+        }
+
+        // Adiciona o evento de rolagem do mouse à janela
+        window.addEventListener("wheel", ajustarZoomComScroll, false)
+
         // ------------ Adicionando IMagem --------------------/
 
-        function createImage () {
+        function createImage (imgPath) {
             // Cria um objeto de geometria para o plano
-            const planeGeometrys = new THREE.PlaneGeometry(6, 8)
+            const planeGeometrys = new THREE.PlaneGeometry(6, 4.5)
 
             // Cria um material com textura para o plano
             const textureLoaders = new THREE.TextureLoader()
-            const texture = textureLoaders.load('./img/torre.png')
+            const texture = textureLoaders.load(imgPath)
             const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true })
 
             // Cria o objeto de malha para o plano
             const planeMesh = new THREE.Mesh(planeGeometrys, material)
 
             // Define a posição e rotação do plano
-            planeMesh.position.set(9.5, 5, 10)
+            planeMesh.position.set(9, 5, 9)
             planeMesh.rotation.x = -Math.PI / 50 // Rotaciona o plano para ficar na horizontal
-            planeMesh.rotation.y = 2199.9
+            planeMesh.rotation.y = 2200
             // Adiciona o plano à cena
             scene.add(planeMesh)
         }
-        // createImage()
+        // createImage('./img/torre.png')
+        createImage('./img/City_start_humanEDITADA.png')
+
+        // Função para aumentar o valor com a rolagem da bolinha do mouse
+        function aumentarValorComScroll (event) {
+            // Verifica a direção da rolagem do mouse
+            const delta = Math.sign(event.deltaY) // -1 para rolagem para cima, 1 para rolagem para baixo
+
+            // Ajusta a quantidade de incremento/diminuição do valor conforme necessário
+            const incremento = 1
+
+            // Atualiza o valor com base na direção da rolagem
+            if (delta === -1) {
+                valor += incremento
+            } else if (delta === 1) {
+                valor -= incremento
+            }
+
+            // Exemplo: exibe o valor atualizado no console
+            console.log("Valor atual:", valor)
+        }
+
+        // Exemplo de uso:
+        let valor = 0
+
+        // Adiciona o evento de rolagem do mouse ao elemento desejado (por exemplo, o documento)
+        document.addEventListener("wheel", aumentarValorComScroll)
 
 
         // ------------------------ Criando Textura Predios -------------/
@@ -89,8 +144,8 @@
 
             // ------------------------ Cria um Prédio ----------------------//
             // Define a posição do prédio
-            building.position.x = 6.6 // aumente 1.5
-            building.position.z = 3.6 // aumente 1.5
+            building.position.x = 1.1 // aumente 1.5
+            building.position.z = 1 // aumente 1.5
 
             // Define a altura do prédio
             building.scale.y = 0.1
@@ -157,7 +212,7 @@
             const groundTexture = new THREE.TextureLoader().load('./img/grama.png')
             groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping
             // Quantas imagens são carregadas
-            groundTexture.repeat.set(15, 15)
+            groundTexture.repeat.set(25, 25)
 
 
             // Cria o material do chão
