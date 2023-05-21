@@ -53,8 +53,32 @@ document.body.appendChild(renderer.domElement);
 // }
 
 // Anima a cena
+// Variáveis para armazenar as coordenadas iniciais do movimento do mouse
+let mouseX = 0;
+let mouseY = 0;
+
+// Função chamada quando o mouse é movido
+function onMouseMove(event) {
+    // Atualiza as coordenadas do mouse
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+
+    // console.log(mouseX, mouseY);
+}
+
+// Adiciona o evento de movimento do mouse ao elemento do documento
+document.addEventListener('mousemove', onMouseMove, false);
+
+// Função de animação para atualizar a posição da câmera
 function animate() {
     requestAnimationFrame(animate);
+
+    // let downCam = 0;
+    // camera.lookAt(mouseY / 90, downCam, mouseX / 90);
+
+    // Renderiza a cena
     renderer.render(scene, camera);
 }
+
+// Chama a função de animação para iniciar o loop de renderização
 animate();

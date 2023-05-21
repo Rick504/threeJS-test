@@ -14,12 +14,16 @@ function onDocumentClickBuildings(event) {
 
     // Verifica se ocorreu uma interseção
     if (intersects.length > 0) {
-        // buildings.forEach(building => {
-        //     let elementHeigth = 1
-        //     building.position.y += elementHeigth
-        // })
+        buildings.forEach((building) => {
+            TweenMax.from(building.position, 2, {
+                y: -2,
+                yoyo: true,
+                repeat: -1,
+                ease: 'Power2.easeInOut',
+            });
+        });
 
-        alert('Prédio clicado!');
+        // alert('Prédio clicado!');
     }
 }
 

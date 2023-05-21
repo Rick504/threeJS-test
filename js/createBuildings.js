@@ -25,8 +25,9 @@ function createBuildings() {
 
     // ------------------------ Cria um Prédio ----------------------//
     // Define a posição do prédio
-    building.position.x = 1.1; // aumente 1.5
-    building.position.z = 1; // aumente 1.5
+    building.position.x = 2; // aumente 1.5
+    building.position.z = 2; // aumente 1.5
+    building.position.y = -3; // aumente 1.5
 
     // Define a altura do prédio
     building.scale.y = 0.1;

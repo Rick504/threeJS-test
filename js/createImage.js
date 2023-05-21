@@ -13,7 +13,7 @@ function createImage(imgPath) {
     const planeMesh = new THREE.Mesh(planeGeometrys, material);
 
     // Define a posição e rotação do plano
-    planeMesh.position.set(9, 5, 9);
+    planeMesh.position.set(9, 0, 10);
     planeMesh.rotation.x = -Math.PI / 50; // Rotaciona o plano para ficar na horizontal
     planeMesh.rotation.y = 2200;
     // Adiciona o plano à cena
