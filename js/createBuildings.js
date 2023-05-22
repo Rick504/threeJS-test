@@ -1,9 +1,12 @@
 // ------------------------ Criando Textura Predios -------------/
 
+let positionBuildings = { positionX: 3.5, positionZ: 3 };
+let positionBuildingImg = { positionX: 4.3, positionZ: 4 };
+
 function createBuildings() {
-    const buildingHeigth = 3;
-    const buildingLeftWidth = 1;
-    const buildingRigthWidth = 1;
+    const buildingHeigth = 2;
+    const buildingLeftWidth = 4;
+    const buildingRigthWidth = 5;
 
     // Cria o objeto de geometria para o prédio
     const buildingGeometry = new THREE.BoxGeometry(
@@ -25,8 +28,8 @@ function createBuildings() {
 
     // ------------------------ Cria um Prédio ----------------------//
     // Define a posição do prédio
-    building.position.x = 2; // aumente 1.5
-    building.position.z = 2; // aumente 1.5
+    building.position.x = positionBuildings.positionX; // aumente 1.5
+    building.position.z = positionBuildings.positionZ; // aumente 1.5
     building.position.y = -3; // aumente 1.5
 
     // Define a altura do prédio
@@ -39,3 +42,8 @@ function createBuildings() {
     scene.add(building);
 }
 createBuildings();
+createImage(
+    '../img/City_start_humanEDITADA.png',
+    positionBuildingImg.positionX,
+    positionBuildingImg.positionZ
+);

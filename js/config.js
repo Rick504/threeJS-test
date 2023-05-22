@@ -20,7 +20,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 // camera.position.set(ver de lado, altura, distancia de frente)
-camera.position.set(40, 40, 40);
+camera.position.set(40, 40, 50);
 
 let downCam = 0;
 let rigthCam = 6;
