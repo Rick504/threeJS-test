@@ -1,23 +1,16 @@
 // ------------------------ Criando Textura Predios -------------/
 
-let positionBuildings = { positionX: 3.5, positionZ: 3 };
-let positionBuildingImg = { positionX: 4.3, positionZ: 4 };
-
-function createBuildings() {
-    const buildingHeigth = 2;
-    const buildingLeftWidth = 4;
-    const buildingRigthWidth = 5;
-
+function createBuildings(element) {
     // Cria o objeto de geometria para o prédio
     const buildingGeometry = new THREE.BoxGeometry(
-        buildingLeftWidth,
-        buildingHeigth,
-        buildingRigthWidth
+        element.buildingLeftWidth,
+        element.buildingHeigth,
+        element.buildingRigthWidth
     );
 
     // Cria o material com textura para o prédio
     const textureLoader = new THREE.TextureLoader();
-    const buildingTexture = textureLoader.load('./img/teste.gif');
+    const buildingTexture = textureLoader.load('../img/grama2.png');
     const buildingMaterial = new THREE.MeshPhongMaterial({ map: buildingTexture });
 
     // Sem textura, com cor simples
@@ -28,8 +21,8 @@ function createBuildings() {
 
     // ------------------------ Cria um Prédio ----------------------//
     // Define a posição do prédio
-    building.position.x = positionBuildings.positionX; // aumente 1.5
-    building.position.z = positionBuildings.positionZ; // aumente 1.5
+    building.position.x = element.positionX; // aumente 1.5
+    building.position.z = element.positionZ; // aumente 1.5
     building.position.y = -3; // aumente 1.5
 
     // Define a altura do prédio
@@ -41,9 +34,25 @@ function createBuildings() {
     // Adiciona o prédio à cena
     scene.add(building);
 }
-createBuildings();
-createImage(
-    '../img/City_start_humanEDITADA.png',
-    positionBuildingImg.positionX,
-    positionBuildingImg.positionZ
-);
+
+// for (let i = -2.6; i < 5; i++) {
+//     let detailsBuildings = {
+//         buildingLeftWidth: 4,
+//         buildingHeigth: 4,
+//         buildingRigthWidth: 5,
+//         positionX: i * 4,
+//         positionZ: i * 0,
+//         positionImg: { positionX: 4.3, positionZ: 4 },
+//     };
+//     createBuildings(detailsBuildings);
+// }
+
+let detailsBuilding = {
+    buildingLeftWidth: 4,
+    buildingHeigth: 4,
+    buildingRigthWidth: 5,
+    positionX: 3.5,
+    positionZ: 8,
+    positionImg: { positionX: 4.3, positionZ: 4 },
+};
+createBuildings(detailsBuilding);

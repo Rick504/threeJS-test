@@ -1,4 +1,13 @@
 //  ------------------- Função para lidar com o clique na cena
+function efectClickPosition(element) {
+    TweenMax.from(element, 2, {
+        y: -2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Power2.easeInOut',
+    });
+}
+
 function onDocumentClickBuildings(event) {
     // Normaliza as coordenadas do clique
     const mouse = new THREE.Vector2();
@@ -10,20 +19,11 @@ function onDocumentClickBuildings(event) {
     raycaster.setFromCamera(mouse, camera);
 
     // Verifica a interseção entre o raio e os prédios
-    const intersects = raycaster.intersectObjects(buildings);
+    let intersects = raycaster.intersectObjects(buildings);
 
     // Verifica se ocorreu uma interseção
     if (intersects.length > 0) {
-        buildings.forEach((building) => {
-            TweenMax.from(building.position, 2, {
-                y: -2,
-                yoyo: true,
-                repeat: -1,
-                ease: 'Power2.easeInOut',
-            });
-        });
-
-        // alert('Prédio clicado!');
+        efectClickPosition(intersects[0].object.position);
     }
 }
 

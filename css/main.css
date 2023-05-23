@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+}
+
+canvas {
+    display: block;
+}
+
+#actions,
+header,
+main {
+    display: flex;
+    border: 2px solid white;
+    background-color: black;
+    position: absolute;
+    color: aliceblue;
+}
+
+header {
+    left: 15%;
+}
+
+header div {
+    padding: 20px;
+}
+
+main {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+    top: 15%;
+    left: 1%;
+}
+
+#actions {
+    top: 85%;
+    left: 35%;
+    padding: 25px;
+}
+
+#actions div {
+    padding: 0 25px;
+}
