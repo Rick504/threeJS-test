@@ -33,6 +33,8 @@ function createBuildings(element) {
 
     // Adiciona o prédio à cena
     scene.add(building);
+
+    return building;
 }
 
 // for (let i = -2.6; i < 5; i++) {
@@ -55,4 +57,30 @@ let detailsBuilding = {
     positionZ: 8,
     positionImg: { positionX: 4.3, positionZ: 4 },
 };
-createBuildings(detailsBuilding);
+let building_1 = createBuildings(detailsBuilding);
+
+let detailsBuilding2 = {
+    buildingLeftWidth: 4,
+    buildingHeigth: 4,
+    buildingRigthWidth: 5,
+    positionX: 5,
+    positionZ: 8,
+    positionImg: { positionX: 4.3, positionZ: 4 },
+};
+let building_2 = createBuildings(detailsBuilding2);
+
+// Verifique a colisão
+if (detectCollision(building_1, building_2)) {
+    // Colisão ocorreu
+    console.log('Colisão detectada!');
+
+    // Modificar a opacidade do objeto1
+    building_1.material.opacity = 0.5;
+    building_1.material.transparent = true;
+
+    // Atualizar a renderização do objeto1
+    building_1.material.needsUpdate = true;
+} else {
+    // Não há colisão
+    console.log('Nenhuma colisão detectada.');
+}
