@@ -76,6 +76,26 @@ function animate() {
     // let downCam = 0;
     // camera.lookAt(mouseY / 90, downCam, mouseX / 90);
 
+    // testes
+    // building_1.position.x += 0.01;
+
+    // Verifique a colisão
+    if (detectCollision(building_1, building_2)) {
+        // Modificar a opacidade do objeto1
+        building_1.material.opacity = 0.5;
+        building_1.material.transparent = true;
+
+        // Atualizar a renderização do objeto1
+        building_1.material.needsUpdate = true;
+    } else {
+        // Restaurar a opacidade do objeto1
+        building_1.material.opacity = 1.0;
+        building_1.material.transparent = false;
+
+        // Atualizar a renderização do objeto1
+        building_1.material.needsUpdate = true;
+    }
+
     // Renderiza a cena
     renderer.render(scene, camera);
 }

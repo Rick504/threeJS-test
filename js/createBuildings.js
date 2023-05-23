@@ -68,19 +68,3 @@ let detailsBuilding2 = {
     positionImg: { positionX: 4.3, positionZ: 4 },
 };
 let building_2 = createBuildings(detailsBuilding2);
-
-// Verifique a colisão
-if (detectCollision(building_1, building_2)) {
-    // Colisão ocorreu
-    console.log('Colisão detectada!');
-
-    // Modificar a opacidade do objeto1
-    building_1.material.opacity = 0.5;
-    building_1.material.transparent = true;
-
-    // Atualizar a renderização do objeto1
-    building_1.material.needsUpdate = true;
-} else {
-    // Não há colisão
-    console.log('Nenhuma colisão detectada.');
-}
