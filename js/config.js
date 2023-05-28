@@ -9,9 +9,9 @@ const grounds = [];
 // Cria a cena
 const scene = new THREE.Scene();
 
-let zoomCam = 10;
-
 // Cria a câmera
+let zoomCam = 15;
+
 const camera = new THREE.PerspectiveCamera(
     zoomCam,
     window.innerWidth / window.innerHeight,
@@ -19,82 +19,17 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-// camera.position.set(ver de lado, altura, distancia de frente)
 camera.position.set(40, 40, 50);
-
-let downCam = 0;
-let rigthCam = 6;
-let leftCam = 5;
-camera.lookAt(leftCam, downCam, rigthCam);
+camera.lookAt(0, 6, 5);
 
 // Cria o renderizador
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// ------------------------ Cria 3 Predios ----------------------//
-// Cria os 3 elementos conforme o numero de limite no for
-// for (let index = 0; index < 3; index++) {
-//     // Cria o objeto de malha para o prédio
-//     const building = new THREE.Mesh(buildingGeometry, buildingMaterial)
-
-//     // Define a posição do prédio
-//     building.position.x = index
-//     building.position.z = index
-
-//     // Define a altura do prédio
-//     building.scale.y = 2
-
-//     // Adiciona o prédio ao array de prédios
-//     buildings.push(building)
-
-//     // Adiciona o prédio à cena
-//     scene.add(building)
-// }
-
-// Anima a cena
-// Variáveis para armazenar as coordenadas iniciais do movimento do mouse
-let mouseX = 0;
-let mouseY = 0;
-
-// Função chamada quando o mouse é movido
-function onMouseMove(event) {
-    // Atualiza as coordenadas do mouse
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-
-    // console.log(mouseX, mouseY);
-}
-
-// Adiciona o evento de movimento do mouse ao elemento do documento
-document.addEventListener('mousemove', onMouseMove, false);
-
 // Função de animação para atualizar a posição da câmera
 function animate() {
     requestAnimationFrame(animate);
-
-    // let downCam = 0;
-    // camera.lookAt(mouseY / 90, downCam, mouseX / 90);
-
-    // testes
-    // building_1.position.x += 0.01;
-
-    // Verifique a colisão
-    if (detectCollision(building_1, building_2)) {
-        // Modificar a opacidade do objeto1
-        building_1.material.opacity = 0.5;
-        building_1.material.transparent = true;
-
-        // Atualizar a renderização do objeto1
-        building_1.material.needsUpdate = true;
-    } else {
-        // Restaurar a opacidade do objeto1
-        building_1.material.opacity = 1.0;
-        building_1.material.transparent = false;
-
-        // Atualizar a renderização do objeto1
-        building_1.material.needsUpdate = true;
-    }
 
     // Renderiza a cena
     renderer.render(scene, camera);

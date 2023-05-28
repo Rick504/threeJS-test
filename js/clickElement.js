@@ -8,10 +8,6 @@ function efectClickPosition(element) {
     });
 }
 
-function editPosition(element) {
-    element.x += 1;
-}
-
 function onDocumentClickBuildings(event) {
     // Normaliza as coordenadas do clique
     const mouse = new THREE.Vector2();
@@ -24,11 +20,11 @@ function onDocumentClickBuildings(event) {
 
     // Verifica a interseção entre o raio e os prédios
     let intersects = raycaster.intersectObjects(buildings);
-    let elementPosition = intersects[0].object.position;
+    let elementPosition = intersects[0].object;
 
     // Verifica se ocorreu uma interseção
     if (intersects.length > 0) {
-        efectClickPosition(elementPosition);
+        efectClickPosition(elementPosition.position);
         editPosition(elementPosition);
     }
 }

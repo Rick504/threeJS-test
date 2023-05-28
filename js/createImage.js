@@ -2,7 +2,7 @@
 
 function createImage(imgPath, positionX, positionZ) {
     // Cria um objeto de geometria para o plano
-    const planeGeometrys = new THREE.PlaneGeometry(6, 5);
+    const geometry = new THREE.PlaneGeometry(6, 5);
 
     // Cria um material com textura para o plano
     const textureLoaders = new THREE.TextureLoader();
@@ -10,7 +10,7 @@ function createImage(imgPath, positionX, positionZ) {
     const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
 
     // Cria o objeto de malha para o plano
-    const planeMesh = new THREE.Mesh(planeGeometrys, material);
+    const planeMesh = new THREE.Mesh(geometry, material);
 
     const positionY = -2;
     planeMesh.position.set(positionX, positionY, positionZ);
@@ -20,8 +20,6 @@ function createImage(imgPath, positionX, positionZ) {
     planeMesh.rotation.y = 220;
     planeMesh.rotation.z = 6.9;
     // Adiciona o plano à cena
-
-    console.log(planeMesh);
 
     scene.add(planeMesh);
 }

@@ -1,19 +1,20 @@
 // ----------------------- Cria Matriz chão ----------------//
-
 function createMatriz() {
     // Cria a geometria do plano
-    const planeGeometry = new THREE.PlaneGeometry(25, 25);
+    const geometry = new THREE.PlaneGeometry(24, 24);
 
     // Cria a textura do chão com imagem de grama
     const groundTexture = new THREE.TextureLoader().load('./img/grama.png');
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+
     // Quantas imagens são carregadas
     groundTexture.repeat.set(25, 25);
 
     // Cria o material do chão
-    const groundMaterial = new THREE.MeshBasicMaterial({ map: groundTexture });
+    const material = new THREE.MeshBasicMaterial({ map: groundTexture });
     // Cria o objeto de malha para o chão
-    const ground = new THREE.Mesh(planeGeometry, groundMaterial);
+    const ground = new THREE.Mesh(geometry, material);
+
     // Rotaciona o chão para ficar paralelo ao eixo x
     ground.rotation.x = -Math.PI / 2;
 

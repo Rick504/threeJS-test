@@ -1,8 +1,8 @@
 // ------------------------ Criando Textura Predios -------------/
-
 function createBuildings(element) {
+    let img = '../img/grama2.png';
     // Cria o objeto de geometria para o prédio
-    const buildingGeometry = new THREE.BoxGeometry(
+    const geometry = new THREE.BoxGeometry(
         element.buildingLeftWidth,
         element.buildingHeigth,
         element.buildingRigthWidth
@@ -10,14 +10,14 @@ function createBuildings(element) {
 
     // Cria o material com textura para o prédio
     const textureLoader = new THREE.TextureLoader();
-    const buildingTexture = textureLoader.load('../img/grama2.png');
-    const buildingMaterial = new THREE.MeshPhongMaterial({ map: buildingTexture });
+    const buildingTexture = textureLoader.load(img);
+    const material = new THREE.MeshPhongMaterial({ map: buildingTexture });
 
     // Sem textura, com cor simples
     // const buildingMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide })
 
     // Cria o objeto de malha para o prédio
-    const building = new THREE.Mesh(buildingGeometry, buildingMaterial);
+    const building = new THREE.Mesh(geometry, material);
 
     // ------------------------ Cria um Prédio ----------------------//
     // Define a posição do prédio
@@ -37,34 +37,23 @@ function createBuildings(element) {
     return building;
 }
 
-// for (let i = -2.6; i < 5; i++) {
-//     let detailsBuildings = {
-//         buildingLeftWidth: 4,
-//         buildingHeigth: 4,
-//         buildingRigthWidth: 5,
-//         positionX: i * 4,
-//         positionZ: i * 0,
-//         positionImg: { positionX: 4.3, positionZ: 4 },
-//     };
-//     createBuildings(detailsBuildings);
-// }
+function createBuildingsMatriz(positionZ) {
+    for (let i = 0; i < 12; i++) {
+        let detailsBuildings = {
+            buildingLeftWidth: 3,
+            buildingHeigth: 2,
+            buildingRigthWidth: 3,
+            positionX: i * 3 + -10.4,
+            positionZ: positionZ,
+            // positionImg: { positionX: 4.3, positionZ: 4 },
+        };
+        createBuildings(detailsBuildings);
+    }
+}
 
-let detailsBuilding = {
-    buildingLeftWidth: 4,
-    buildingHeigth: 4,
-    buildingRigthWidth: 5,
-    positionX: 3.5,
-    positionZ: 8,
-    positionImg: { positionX: 4.3, positionZ: 4 },
-};
-let building_1 = createBuildings(detailsBuilding);
+const values = [22.5, 19.5, 16.5, 13.5, 10.5, 7.5, 4.5, 1.5, -1.5, -4.5, -7.5, -10.5];
+const length = values.length;
 
-let detailsBuilding2 = {
-    buildingLeftWidth: 4,
-    buildingHeigth: 4,
-    buildingRigthWidth: 5,
-    positionX: 5,
-    positionZ: 8,
-    positionImg: { positionX: 4.3, positionZ: 4 },
-};
-let building_2 = createBuildings(detailsBuilding2);
+for (const value of values) {
+    createBuildingsMatriz(value);
+}
