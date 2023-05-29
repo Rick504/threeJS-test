@@ -1,6 +1,6 @@
 // ------------------------ Criando Textura Predios -------------/
-function createBuildings(element) {
-    let img = '../img/grama2.png';
+function createBuildings(element, texture) {
+    let img = texture;
     // Cria o objeto de geometria para o prédio
     const geometry = new THREE.BoxGeometry(
         element.buildingLeftWidth,
@@ -45,9 +45,8 @@ function createBuildingsMatriz(positionZ) {
             buildingRigthWidth: 3,
             positionX: i * 3 + -10.4,
             positionZ: positionZ,
-            // positionImg: { positionX: 4.3, positionZ: 4 },
         };
-        createBuildings(detailsBuildings);
+        createBuildings(detailsBuildings, '../img/grama2.png');
     }
 }
 
