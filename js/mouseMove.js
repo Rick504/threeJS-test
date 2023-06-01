@@ -1,29 +1,29 @@
 let detailsBuildings = {
     buildingLeftWidth: 3,
-    buildingHeigth: 12,
-    buildingRigthWidth: 3,
-    positionX: -1.5,
-    positionZ: 1.7,
+    buildingHeigth: 2,
+    buildingRigthWidth: 3.6,
+    positionX: -1.3,
+    positionZ: -4.9,
 };
 let cube = createBuildings(detailsBuildings, '../img/grama.png');
 
-let detailsBuildings2 = {
-    buildingLeftWidth: 3,
-    buildingHeigth: 12,
-    buildingRigthWidth: 3,
-    positionX: -6.5,
-    positionZ: 1.7,
-};
-let cube2 = createBuildings(detailsBuildings2, '../img/grama.png');
+// let detailsBuildings2 = {
+//     buildingLeftWidth: 3,
+//     buildingHeigth: 12,
+//     buildingRigthWidth: 3,
+//     positionX: -6.5,
+//     positionZ: 1.7,
+// };
+// let cube2 = createBuildings(detailsBuildings2, '../img/grama.png');
 
-let detailsBuildings3 = {
-    buildingLeftWidth: 3,
-    buildingHeigth: 12,
-    buildingRigthWidth: 3,
-    positionX: -6.5,
-    positionZ: 5.7,
-};
-let cube3 = createBuildings(detailsBuildings3, '../img/grama.png');
+// let detailsBuildings3 = {
+//     buildingLeftWidth: 3,
+//     buildingHeigth: 12,
+//     buildingRigthWidth: 3,
+//     positionX: -6.5,
+//     positionZ: 5.7,
+// };
+// let cube3 = createBuildings(detailsBuildings3, '../img/grama.png');
 
 cube.isDragging = false; // Propriedade para controle do movimento
 
@@ -70,7 +70,7 @@ function moveObject(event) {
             }
 
             // Agora você tem o objeto com a maior colisão
-            console.log('Objeto com maior colisão:', objetoMaiorColisao);
+            // console.log('Objeto com maior colisão:', objetoMaiorColisao);
 
             // Posicionar outro objeto na mesma posição do objeto de colisão
             if (objetoMaiorColisao) {

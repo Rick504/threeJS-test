@@ -41,8 +41,8 @@ function createBuildingsMatriz(positionZ) {
     for (let i = 0; i < 12; i++) {
         let detailsBuildings = {
             buildingLeftWidth: 3,
-            buildingHeigth: 2,
-            buildingRigthWidth: 3,
+            buildingHeigth: 0.5,
+            buildingRigthWidth: 3.6,
             positionX: i * 3 + -10.4,
             positionZ: positionZ,
         };
@@ -50,7 +50,7 @@ function createBuildingsMatriz(positionZ) {
     }
 }
 
-const values = [22.5, 19.5, 16.5, 13.5, 10.5, 7.5, 4.5, 1.5, -1.5, -4.5, -7.5, -10.5];
+const values = [23.8, 20.5, 20.2, 16.6, 13, 9.4, 5.8, 2.2, -1.4, -5, -8.6, -12.2];
 const length = values.length;
 
 for (const value of values) {

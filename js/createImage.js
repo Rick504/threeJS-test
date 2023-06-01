@@ -2,7 +2,7 @@
 
 function createImage(imgPath) {
     // Cria um objeto de geometria para o plano
-    const geometry = new THREE.PlaneGeometry(5, 5);
+    const geometry = new THREE.PlaneGeometry(3.7, 2.7);
 
     // Cria um material com textura para o plano
     const textureLoaders = new THREE.TextureLoader();
@@ -10,18 +10,37 @@ function createImage(imgPath) {
     const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
 
     // Cria o objeto de malha para o plano
-    const planeMesh = new THREE.Mesh(geometry, material);
+    const imgMesh = new THREE.Mesh(geometry, material);
 
-    planeMesh.position.x = 8;
-    planeMesh.position.y = 7;
-    planeMesh.position.z = 3;
+    imgMesh.position.x = 0.2;
+    imgMesh.position.y = 4;
+    imgMesh.position.z = 4.1;
 
     // Define rotação do plano
-    planeMesh.rotation.x = 0;
-    planeMesh.rotation.y = 1;
-    planeMesh.rotation.z = 0;
+    imgMesh.rotation.x = 12.57;
+    imgMesh.rotation.y = 7.15;
+    imgMesh.rotation.z = 0;
+
+    imgMesh.scale.y = 1.25;
+    imgMesh.scale.x = 1.2;
     // Adiciona o plano à cena
 
-    scene.add(planeMesh);
+    scene.add(imgMesh);
+
+    return imgMesh;
 }
-createImage('../img/Prefeitura.png');
+
+let imgMesh = createImage('../img/santuario(5x5).png');
+
+// Criar uma função de atualização personalizada para a animação
+function atualizar() {
+    // Atualize aqui os objetos e animações do seu cenário 3D
+
+    // console.log((imgMesh.scale.y += 0.01));
+
+    // Renderize a cena usando o seu WebGLRenderer
+    renderer.render(scene, camera);
+}
+
+// Defina a função de atualização como o loop de animação
+renderer.setAnimationLoop(atualizar);
