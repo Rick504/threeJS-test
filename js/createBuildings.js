@@ -23,7 +23,7 @@ function createBuildings(element, texture) {
     // Define a posição do prédio
     building.position.x = element.positionX; // aumente 1.5
     building.position.z = element.positionZ; // aumente 1.5
-    building.position.y = -3; // aumente 1.5
+    building.position.y = 2; // aumente 1.5
 
     // Define a altura do prédio
     building.scale.y = 0.1;

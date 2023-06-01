@@ -1,8 +1,8 @@
 // ------------ Adicionando IMagem --------------------/
 
-function createImage(imgPath, positionX, positionZ) {
+function createImage(imgPath) {
     // Cria um objeto de geometria para o plano
-    const geometry = new THREE.PlaneGeometry(6, 5);
+    const geometry = new THREE.PlaneGeometry(5, 5);
 
     // Cria um material com textura para o plano
     const textureLoaders = new THREE.TextureLoader();
@@ -12,16 +12,16 @@ function createImage(imgPath, positionX, positionZ) {
     // Cria o objeto de malha para o plano
     const planeMesh = new THREE.Mesh(geometry, material);
 
-    const positionY = -2;
-    planeMesh.position.set(positionX, positionY, positionZ);
+    planeMesh.position.x = 8;
+    planeMesh.position.y = 7;
+    planeMesh.position.z = 3;
 
     // Define rotação do plano
-    planeMesh.rotation.x = 218.8; // Rotaciona o plano para ficar na horizontal
-    planeMesh.rotation.y = 220;
-    planeMesh.rotation.z = 6.9;
+    planeMesh.rotation.x = 0;
+    planeMesh.rotation.y = 1;
+    planeMesh.rotation.z = 0;
     // Adiciona o plano à cena
 
     scene.add(planeMesh);
 }
-// createImage('./img/torre.png')
-// createImage('../img/City_start_humanEDITADA.png', 4.3, 4);
+createImage('../img/Prefeitura.png');

@@ -7,6 +7,24 @@ let detailsBuildings = {
 };
 let cube = createBuildings(detailsBuildings, '../img/grama.png');
 
+let detailsBuildings2 = {
+    buildingLeftWidth: 3,
+    buildingHeigth: 12,
+    buildingRigthWidth: 3,
+    positionX: -6.5,
+    positionZ: 1.7,
+};
+let cube2 = createBuildings(detailsBuildings2, '../img/grama.png');
+
+let detailsBuildings3 = {
+    buildingLeftWidth: 3,
+    buildingHeigth: 12,
+    buildingRigthWidth: 3,
+    positionX: -6.5,
+    positionZ: 5.7,
+};
+let cube3 = createBuildings(detailsBuildings3, '../img/grama.png');
+
 cube.isDragging = false; // Propriedade para controle do movimento
 
 // Função para iniciar o movimento ao clicar no objeto
@@ -36,6 +54,34 @@ function moveObject(event) {
             const intersectPoint = intersects[0].point;
             cube.position.x = intersectPoint.x;
             cube.position.z = intersectPoint.z;
+
+            var maiorDistancia = -Infinity;
+            var objetoMaiorColisao = null;
+
+            // Percorrer todas as interseções e encontrar a maior distância
+            for (var i = 0; i < intersects.length; i++) {
+                var distancia = intersects[i].distance;
+                var objeto = intersects[i].object;
+
+                if (distancia > maiorDistancia) {
+                    maiorDistancia = distancia;
+                    objetoMaiorColisao = objeto;
+                }
+            }
+
+            // Agora você tem o objeto com a maior colisão
+            console.log('Objeto com maior colisão:', objetoMaiorColisao);
+
+            // Posicionar outro objeto na mesma posição do objeto de colisão
+            if (objetoMaiorColisao) {
+                // Supondo que você tenha o objeto desejado na variável 'objetoDesejado'
+
+                // Obtém a posição do objeto colidido
+                var posicaoColidido = objetoMaiorColisao.position.clone();
+
+                // Define a posição do objeto desejado igual à posição do objeto colidido
+                cube.position.copy(posicaoColidido);
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ const grounds = [];
 const scene = new THREE.Scene();
 
 // Cria a câmera
-let zoomCam = 15;
+let zoomCam = 8;
 
 const camera = new THREE.PerspectiveCamera(
     zoomCam,
