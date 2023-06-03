@@ -1,4 +1,3 @@
-// Função para aumentar o valor com a rolagem da bolinha do mouse
 function increaseValueWithScroll(event) {
     // Verifica a direção da rolagem do mouse
     const delta = Math.sign(event.deltaY); // -1 para rolagem para cima, 1 para rolagem para baixo

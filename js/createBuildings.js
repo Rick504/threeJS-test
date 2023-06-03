@@ -1,14 +1,47 @@
-// ------------------------ Criando Textura Predios -------------/
-function createBuildings(element, texture) {
-    let materia;
-    // Cria o objeto de geometria para o prédio
+const grupo = new THREE.Group();
+
+function createMainMatrix(element, texture) {
     const geometry = new THREE.BoxGeometry(
         element.buildingLeftWidth,
         element.buildingHeigth,
         element.buildingRigthWidth
     );
 
-    // Cria o material com textura para o prédio
+    const textureLoader = new THREE.TextureLoader();
+    const img = texture;
+    const buildingTexture = textureLoader.load(img);
+    const material = new THREE.MeshPhongMaterial({ map: buildingTexture });
+
+    const mainMatrix = new THREE.Mesh(geometry, material);
+
+    mainMatrix.position.x = element.positionX;
+    mainMatrix.position.z = element.positionZ;
+    mainMatrix.position.y = 2;
+
+    scene.add(mainMatrix);
+
+    return mainMatrix;
+}
+
+let detailsMainMatrix = {
+    buildingLeftWidth: 36,
+    buildingHeigth: 0,
+    buildingRigthWidth: 43,
+    positionX: 6.1,
+    positionZ: 7.5,
+};
+const mainMatrix = createMainMatrix(detailsMainMatrix, '../img/grama.png');
+grupo.add(mainMatrix);
+
+// ------------------------ Criando Textura Predios -------------/
+function createBuildings(element, texture) {
+    let materia;
+    const geometry = new THREE.BoxGeometry(
+        element.buildingLeftWidth,
+        element.buildingHeigth,
+        element.buildingRigthWidth
+    );
+
     const textureLoader = new THREE.TextureLoader();
     if (texture) {
         let img = texture;
@@ -20,26 +53,16 @@ function createBuildings(element, texture) {
             wireframe: true,
         });
     }
-
-    // Sem textura, com cor simples
-    // const buildingMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide })
-
-    // Cria o objeto de malha para o prédio
     const building = new THREE.Mesh(geometry, material);
 
-    // ------------------------ Cria um Prédio ----------------------//
-    // Define a posição do prédio
-    building.position.x = element.positionX; // aumente 1.5
-    building.position.z = element.positionZ; // aumente 1.5
-    building.position.y = 2; // aumente 1.5
+    building.position.x = element.positionX;
+    building.position.z = element.positionZ;
+    building.position.y = 2;
 
-    // Define a altura do prédio
-    building.scale.y = 0.1;
+    building.scale.y = 0.01;
 
-    // Adiciona o prédio ao array de prédios
     buildings.push(building);
 
-    // Adiciona o prédio à cena
     scene.add(building);
 
     return building;
@@ -55,8 +78,13 @@ function createBuildingsMatriz(positionZ) {
             positionZ: positionZ,
         };
         const building = createBuildings(detailsBuildings);
+        grupo.add(building);
     }
 }
+
+grupo.rotation.set(0.2, 15, 0);
+
+scene.add(grupo);
 
 const values = [27.4, 23.8, 20.2, 16.6, 13, 9.4, 5.8, 2.2, -1.4, -5, -8.6, -12.2];
 const length = values.length;

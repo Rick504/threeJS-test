@@ -2,10 +2,12 @@ let detailsBuildings = {
     buildingLeftWidth: 3,
     buildingHeigth: 2,
     buildingRigthWidth: 3.6,
-    positionX: -1.3,
-    positionZ: -4.9,
+    positionX: -1.4,
+    positionZ: -5,
 };
 let cube = createBuildings(detailsBuildings, '../img/grama.png');
+// grupo.add(mainMatrix);
+cube.rotation.set(0.2, 15, 0);
 
 cube.isDragging = false; // Propriedade para controle do movimento
 
