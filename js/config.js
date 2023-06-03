@@ -1,10 +1,4 @@
-var object;
-var mouse = new THREE.Vector2();
-var raycaster = new THREE.Raycaster();
-var offset = new THREE.Vector3();
-var isDragging = false;
 const buildings = [];
-const grounds = [];
 
 // Cria a cena
 const scene = new THREE.Scene();

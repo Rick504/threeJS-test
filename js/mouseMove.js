@@ -37,7 +37,6 @@ function stopDragging() {
     cube.isDragging = false;
 }
 
-// Função para mover o objeto com o ponteiro do mouse
 function moveObject(event) {
     if (cube.isDragging) {
         const mouseCoords = {
@@ -52,36 +51,12 @@ function moveObject(event) {
 
         if (intersects.length > 0) {
             const intersectPoint = intersects[0].point;
-            cube.position.x = intersectPoint.x;
-            cube.position.z = intersectPoint.z;
 
-            var maiorDistancia = -Infinity;
-            var objetoMaiorColisao = null;
+            // Agora você tem o objeto colidido
+            const objetoColidido = intersects[0].object;
 
-            // Percorrer todas as interseções e encontrar a maior distância
-            for (var i = 0; i < intersects.length; i++) {
-                var distancia = intersects[i].distance;
-                var objeto = intersects[i].object;
-
-                if (distancia > maiorDistancia) {
-                    maiorDistancia = distancia;
-                    objetoMaiorColisao = objeto;
-                }
-            }
-
-            // Agora você tem o objeto com a maior colisão
-            // console.log('Objeto com maior colisão:', objetoMaiorColisao);
-
-            // Posicionar outro objeto na mesma posição do objeto de colisão
-            if (objetoMaiorColisao) {
-                // Supondo que você tenha o objeto desejado na variável 'objetoDesejado'
-
-                // Obtém a posição do objeto colidido
-                var posicaoColidido = objetoMaiorColisao.position.clone();
-
-                // Define a posição do objeto desejado igual à posição do objeto colidido
-                cube.position.copy(posicaoColidido);
-            }
+            // Define a nova posição do objeto 'cube' para ser a mesma posição do objeto colidido
+            cube.position.copy(objetoColidido.position);
         }
     }
 }
