@@ -4,7 +4,7 @@ const buildings = [];
 const scene = new THREE.Scene();
 
 // Cria a câmera
-let zoomCam = 8;
+let zoomCam = 2 + 5;
 
 const camera = new THREE.PerspectiveCamera(
     zoomCam,

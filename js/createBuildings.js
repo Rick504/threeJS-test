@@ -1,6 +1,6 @@
 // ------------------------ Criando Textura Predios -------------/
 function createBuildings(element, texture) {
-    let img = texture;
+    let materia;
     // Cria o objeto de geometria para o prédio
     const geometry = new THREE.BoxGeometry(
         element.buildingLeftWidth,
@@ -10,8 +10,16 @@ function createBuildings(element, texture) {
 
     // Cria o material com textura para o prédio
     const textureLoader = new THREE.TextureLoader();
-    const buildingTexture = textureLoader.load(img);
-    const material = new THREE.MeshPhongMaterial({ map: buildingTexture });
+    if (texture) {
+        let img = texture;
+        const buildingTexture = textureLoader.load(img);
+        material = new THREE.MeshPhongMaterial({ map: buildingTexture });
+    } else {
+        material = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            wireframe: true,
+        });
+    }
 
     // Sem textura, com cor simples
     // const buildingMaterial = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide })
@@ -46,11 +54,11 @@ function createBuildingsMatriz(positionZ) {
             positionX: i * 3 + -10.4,
             positionZ: positionZ,
         };
-        createBuildings(detailsBuildings, '../img/grama2.png');
+        const building = createBuildings(detailsBuildings);
     }
 }
 
-const values = [23.8, 20.5, 20.2, 16.6, 13, 9.4, 5.8, 2.2, -1.4, -5, -8.6, -12.2];
+const values = [27.4, 23.8, 20.2, 16.6, 13, 9.4, 5.8, 2.2, -1.4, -5, -8.6, -12.2];
 const length = values.length;
 
 for (const value of values) {

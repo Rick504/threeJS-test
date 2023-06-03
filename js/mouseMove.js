@@ -7,24 +7,6 @@ let detailsBuildings = {
 };
 let cube = createBuildings(detailsBuildings, '../img/grama.png');
 
-// let detailsBuildings2 = {
-//     buildingLeftWidth: 3,
-//     buildingHeigth: 12,
-//     buildingRigthWidth: 3,
-//     positionX: -6.5,
-//     positionZ: 1.7,
-// };
-// let cube2 = createBuildings(detailsBuildings2, '../img/grama.png');
-
-// let detailsBuildings3 = {
-//     buildingLeftWidth: 3,
-//     buildingHeigth: 12,
-//     buildingRigthWidth: 3,
-//     positionX: -6.5,
-//     positionZ: 5.7,
-// };
-// let cube3 = createBuildings(detailsBuildings3, '../img/grama.png');
-
 cube.isDragging = false; // Propriedade para controle do movimento
 
 // Função para iniciar o movimento ao clicar no objeto
@@ -50,8 +32,6 @@ function moveObject(event) {
         const intersects = raycaster.intersectObjects(scene.children);
 
         if (intersects.length > 0) {
-            const intersectPoint = intersects[0].point;
-
             // Agora você tem o objeto colidido
             const objetoColidido = intersects[0].object;
 

@@ -19,11 +19,9 @@ function createImage(imgPath) {
     // Define rotação do plano
     imgMesh.rotation.x = 12.57;
     imgMesh.rotation.y = 7.15;
-    imgMesh.rotation.z = 0;
 
     imgMesh.scale.y = 1.25;
     imgMesh.scale.x = 1.2;
-    // Adiciona o plano à cena
 
     scene.add(imgMesh);
 
