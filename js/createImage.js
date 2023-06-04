@@ -1,5 +1,5 @@
 function createImage(imgPath) {
-    const geometry = new THREE.PlaneGeometry(3.7, 2.7);
+    const geometry = new THREE.PlaneGeometry(7, 5);
 
     const textureLoaders = new THREE.TextureLoader();
     const texture = textureLoaders.load(imgPath);

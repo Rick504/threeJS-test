@@ -1,17 +1,12 @@
-const buttonGeometry = new THREE.PlaneGeometry(1, 1);
-const buttonMaterial = new THREE.MeshBasicMaterial({ color: 0x808080 });
-const buttonMesh = new THREE.Mesh(buttonGeometry, buttonMaterial);
-buttonMesh.position.set(0, 8, 1);
-scene.add(buttonMesh);
+function createBtnScena(x, y, z) {
+    const buttonGeometry = new THREE.PlaneGeometry(1, 1);
+    const buttonMaterial = new THREE.MeshBasicMaterial({ color: 0x808080 });
+    const buttonMesh = new THREE.Mesh(buttonGeometry, buttonMaterial);
+    buttonMesh.position.set(x, y, z);
+    scene.add(buttonMesh);
+}
 
-const textGeometry = new THREE.TextGeometry('Clique-me', {
-    font: 'helvetiker', // Fonte do texto (deve estar disponível)
-    size: 12, // Tamanho do texto
-    height: 1, // Espessura do texto
-});
-const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-textMesh.position.set(-40, -10, 0);
+createBtnScena(0, 8, 1);
 
 function onButtonClick() {
     alert('Botão clicado!');

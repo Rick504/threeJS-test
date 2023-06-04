@@ -1,13 +1,13 @@
 let detailsBuildings = {
     buildingLeftWidth: 3,
-    buildingHeigth: 2,
+    buildingHeigth: 2.5,
     buildingRigthWidth: 3.6,
-    positionX: -1.4,
-    positionZ: -5,
+    positionX: 1,
+    positionZ: 0.3,
 };
-let cube = createBuildings(detailsBuildings, '../img/grama.png');
-// grupo.add(mainMatrix);
-cube.rotation.set(0.2, 15, 0);
+const cube = createBuildings(detailsBuildings, '../img/grama.png');
+grupo.add(cube);
+// cube.rotation.set(0.3, 15, 0);
 
 cube.isDragging = false; // Propriedade para controle do movimento
 
@@ -31,14 +31,17 @@ function moveObject(event) {
         const raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(mouseCoords, camera);
 
-        const intersects = raycaster.intersectObjects(scene.children);
+        // Verificar colisões com os objetos do grupo
+        const intersects = raycaster.intersectObjects(grupo.children, true);
 
         if (intersects.length > 0) {
-            // Agora você tem o objeto colidido
             const objetoColidido = intersects[0].object;
 
-            // Define a nova posição do objeto 'cube' para ser a mesma posição do objeto colidido
-            cube.position.copy(objetoColidido.position);
+            // Obter a posição do objeto colidido em relação ao grupo
+            const posicaoRelativa = objetoColidido.position.clone().sub(grupo.position);
+
+            // Mover o cube para a posição do objeto colidido
+            cube.position.copy(posicaoRelativa);
         }
     }
 }

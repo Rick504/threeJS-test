@@ -82,7 +82,7 @@ function createBuildingsMatriz(positionZ) {
     }
 }
 
-grupo.rotation.set(0.2, 15, 0);
+grupo.rotation.set(0.3, 15, 0);
 
 scene.add(grupo);
 
