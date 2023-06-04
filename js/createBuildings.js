@@ -1,4 +1,4 @@
-const grupo = new THREE.Group();
+const group = new THREE.Group();
 
 function createMainMatrix(element, texture) {
     const geometry = new THREE.BoxGeometry(
@@ -31,7 +31,7 @@ let detailsMainMatrix = {
     positionZ: 7.5,
 };
 const mainMatrix = createMainMatrix(detailsMainMatrix, '../img/grama.png');
-grupo.add(mainMatrix);
+group.add(mainMatrix);
 
 // ------------------------ Criando Textura Predios -------------/
 function createBuildings(element, texture) {
@@ -78,13 +78,17 @@ function createBuildingsMatriz(positionZ) {
             positionZ: positionZ,
         };
         const building = createBuildings(detailsBuildings);
-        grupo.add(building);
+        group.add(building);
     }
 }
 
-grupo.rotation.set(0.3, 15, 0);
+for (let i = 0; i < buildings.length; i++) {
+    buildings[i] = { isBlock: true };
+}
 
-scene.add(grupo);
+group.rotation.set(0.3, 15, 0);
+
+scene.add(group);
 
 const values = [27.4, 23.8, 20.2, 16.6, 13, 9.4, 5.8, 2.2, -1.4, -5, -8.6, -12.2];
 const length = values.length;

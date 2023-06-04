@@ -6,7 +6,7 @@ function createBtnScena(x, y, z) {
     scene.add(buttonMesh);
 }
 
-createBtnScena(0, 8, 1);
+// createBtnScena(0, 8, 1);
 
 function onButtonClick() {
     alert('Botão clicado!');

@@ -19,7 +19,7 @@ function createImage(imgPath) {
     return imgMesh;
 }
 
-let imgMesh = createImage('../img/santuario(5x5).png');
+// let imgMesh = createImage('../img/santuario(5x5).png');
 
 function atualizar() {
     renderer.render(scene, camera);
