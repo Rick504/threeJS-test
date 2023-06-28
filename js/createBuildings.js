@@ -59,7 +59,7 @@ function createBuildings(element, texture) {
     building.position.z = element.positionZ;
     building.position.y = 2;
 
-    building.scale.y = 0.01;
+    building.scale.y = 0.1;
 
     buildings.push(building);
 
